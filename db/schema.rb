@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705131925) do
+ActiveRecord::Schema.define(version: 20170705142649) do
 
   create_table "blogposts", force: :cascade do |t|
     t.string "title"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20170705131925) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["locationable_type", "locationable_id"], name: "index_locations_on_locationable_type_and_locationable_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.integer "blogpost_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blogpost_id"], name: "index_trips_on_blogpost_id"
   end
 
 end

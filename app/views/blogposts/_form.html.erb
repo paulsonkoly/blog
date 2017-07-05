@@ -22,6 +22,16 @@
   </div>
 
   <div>
+      <p><strong>Trip:</strong></p>
+
+      <div id="trips">
+	  <%= form.fields_for :trip do |trip_form| %>
+	      <%= render 'trips/trip_fields', f: trip_form %>
+	  <% end %>
+      </div>
+  </div>
+
+  <div>
       <p><strong>Locations:</strong></p>
 
       <div id="locations">

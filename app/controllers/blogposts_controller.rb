@@ -15,6 +15,7 @@ class BlogpostsController < ApplicationController
   # GET /blogposts/new
   def new
     @blogpost = Blogpost.new
+    @blogpost.build_trip
   end
 
   # GET /blogposts/1/edit
@@ -75,6 +76,16 @@ class BlogpostsController < ApplicationController
                                          :latitude,
                                          :longitude,
                                          :label,
-                                         :destroy])
+                                         :id,
+                                         :_destroy],
+                                       trip_attributes: [
+                                         :id,
+                                         { locations_attributes: [
+                                             :latitude,
+                                             :longitude,
+                                             :label,
+                                             :id,
+                                             :_destroy]}
+                                       ])
     end
 end

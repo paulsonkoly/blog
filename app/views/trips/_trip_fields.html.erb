@@ -1,0 +1,12 @@
+<fieldset class="nested-fields">
+  <div id="locations">
+    <%= f.fields_for :locations do |location_form| %>
+	<%= render 'locations/location_fields', f: location_form %>
+    <% end %>
+
+    <div class="links">
+	<%= link_to_add_association 'add location', f, :locations,
+	    partial: 'locations/location_fields' %>
+    </div>
+  </div>
+</fieldset>
