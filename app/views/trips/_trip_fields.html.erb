@@ -4,9 +4,7 @@
 	    <%= render 'locations/location_fields', f: location_form %>
 	<% end %>
 
-	<div class="links">
-	    <%= link_to_add_association 'Add location', f, :locations,
-	    partial: 'locations/location_fields', class: 'button' %>
-	</div>
+	<%= link_to_add_association 'Add location', f, :locations,
+	partial: 'locations/location_fields', class: 'button' %>
     </div>
 </fieldset>

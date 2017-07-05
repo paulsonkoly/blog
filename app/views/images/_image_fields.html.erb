@@ -1,9 +1,16 @@
 <fieldset class="nested-fields">
-    <div class="field">
-	<%= f.file_field :file%>
-    </div>
-
-    <div class="field">
-	<%= link_to_remove_association "Remove image", f, class: 'button' %>
+    <div class="row">
+	<% if f.object.new_record? %>
+	    <div class="medium-6 columns">
+		<%= f.file_field :file%>
+	    </div>
+	<% else %>
+	    <div class="medium-6 columns">
+		<%= image_tag f.object.file.url(:icon) %>
+	    </div>
+	<% end %>
+	<div class="medium-6 columns">
+	    <%= link_to_remove_association "Remove image", f, class: 'button' %>
+	</div>
     </div>
 </fieldset>

@@ -39,24 +39,20 @@
 
       <div class="tabs-panel" id="locations-fields">
 	  <%= form.fields_for :locations do |location_form| %>
-	      <%= render 'locations/location_fields', f: location_form, destroy: true %>
+	      <%= render 'locations/location_fields', f: location_form %>
 	  <% end %>
 
-	  <div class="links">
-	      <%= link_to_add_association 'Add location', form, :locations,
-		  partial: 'locations/location_fields', class: 'button' %>
-	  </div>
+	  <%= link_to_add_association 'Add location', form, :locations,
+	      partial: 'locations/location_fields', class: 'button' %>
       </div>
 
       <div class="tabs-panel" id="images-fields">
 	  <%= form.fields_for :images do |image_form| %>
-	      <%= render 'images/image_fields', f: image_form, destroy: true %>
+	      <%= render 'images/image_fields', f: image_form %>
 	  <% end %>
 
-	  <div class="links">
-	      <%= link_to_add_association 'Add image', form, :images,
-		  partial: 'images/image_fields', class: 'button' %>
-	  </div>
+	  <%= link_to_add_association 'Add image', form, :images,
+	      partial: 'images/image_fields', class: 'button' %>
       </div>
   </div>
 
