@@ -3,6 +3,6 @@ FactoryGirl.define do
     latitude 1.5
     longitude 1.5
     label "MyString"
-    locationable nil
+    association :locationable, factory: :blogpost
   end
 end
