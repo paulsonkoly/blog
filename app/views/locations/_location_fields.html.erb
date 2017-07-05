@@ -1,12 +1,16 @@
-<fieldset class="nested-fields">
-    <div class="field">
-	<%= f.label :latitude %>
-	<%= f.text_field :latitude, id: :location_latitude %>
-    </div>
+<fieldset class="fieldset nested-fields">
+    <legend>Location</legend>
+    
+    <div class="row">
+	<div class="medium-6 columns">
+	    <%= f.label :latitude %>
+	    <%= f.text_field :latitude, id: :location_latitude %>
+	</div>
 
-    <div class="field">
-	<%= f.label :longitude %>
-	<%= f.text_field :longitude, id: :location_longitude %>
+	<div class="medium-6 columns">
+	    <%= f.label :longitude %>
+	    <%= f.text_field :longitude, id: :location_longitude %>
+	</div>
     </div>
 
     <div class="field">
@@ -15,6 +19,6 @@
     </div>
 
     <div class="field">
-	<%= link_to_remove_association "Remove location", f %>
+	<%= link_to_remove_association "Remove location", f, class: 'button' %>
     </div>
 </fieldset>

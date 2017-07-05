@@ -1,67 +1,68 @@
 <%= form_with(model: blogpost, local: true, html: {multipart: true} ) do |form| %>
   <% if blogpost.errors.any? %>
-    <div id="error_explanation">
+    <div class="callout alert large">
       <h2><%= pluralize(blogpost.errors.count, "error") %> prohibited this blogpost from being saved:</h2>
 
       <ul>
       <% blogpost.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :blogpost_title %>
-  </div>
+  <ul class="tabs" data-responsive-accordion-tabs="tabs medium-accordion large-tabs" id="form-tabs">
+      <li class="tabs-title is-active"><a href="#blogpost-fields" aria-selected="true">Blogpost</a></li>
+      <li class="tabs-title"><a href="#trip-fields">Trip</a></li>
+      <li class="tabs-title"><a href="#locations-fields">Locations</a></li>
+      <li class="tabs-title"><a href="#images-fields">Images</a></li>
+  </ul>
+  
+  <div class="tabs-content" data-tabs-content="form-tabs">
+      <div class="tabs-panel is-active" id="blogpost-fields">
+	  <div class="field">
+	      <%= form.label :title %>
+	      <%= form.text_field :title, id: :blogpost_title %>
+	  </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :blogpost_content %>
-  </div>
+	  <div class="field">
+	      <%= form.label :content %>
+	      <%= form.text_area :content, id: :blogpost_content, rows: 10 %>
+	  </div>
+      </div>
 
-  <div>
-      <p><strong>Trip:</strong></p>
-
-      <div id="trips">
+      <div class="tabs-panel" id="trip-fields">
 	  <%= form.fields_for :trip do |trip_form| %>
 	      <%= render 'trips/trip_fields', f: trip_form %>
 	  <% end %>
       </div>
-  </div>
 
-  <div>
-      <p><strong>Locations:</strong></p>
-
-      <div id="locations">
+      <div class="tabs-panel" id="locations-fields">
 	  <%= form.fields_for :locations do |location_form| %>
 	      <%= render 'locations/location_fields', f: location_form, destroy: true %>
 	  <% end %>
 
 	  <div class="links">
-	      <%= link_to_add_association 'add location', form, :locations,
-		  partial: 'locations/location_fields' %>
+	      <%= link_to_add_association 'Add location', form, :locations,
+		  partial: 'locations/location_fields', class: 'button' %>
 	  </div>
       </div>
-  </div>
 
-  <div>
-      <p><strong>Images:</strong></p>
-
-      <div id="images">
+      <div class="tabs-panel" id="images-fields">
 	  <%= form.fields_for :images do |image_form| %>
 	      <%= render 'images/image_fields', f: image_form, destroy: true %>
 	  <% end %>
 
 	  <div class="links">
-	      <%= link_to_add_association 'add image', form, :images,
-		  partial: 'images/image_fields' %>
+	      <%= link_to_add_association 'Add image', form, :images,
+		  partial: 'images/image_fields', class: 'button' %>
 	  </div>
       </div>
   </div>
 
+  <br />
+  
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'button' %>
   </div>
 <% end %>
