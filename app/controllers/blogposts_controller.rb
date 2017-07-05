@@ -20,6 +20,7 @@ class BlogpostsController < ApplicationController
 
   # GET /blogposts/1/edit
   def edit
+    @blogpost.build_trip unless @blogpost.trip
   end
 
   # POST /blogposts
