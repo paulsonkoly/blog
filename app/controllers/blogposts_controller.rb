@@ -71,22 +71,14 @@ class BlogpostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blogpost_params
+      locations_attributes = [:latitude, :longitude, :label, :id, :_destroy]
+      trip_attributes = [:id, { locations_attributes: locations_attributes }]
+      image_attributes = [:id, :file, :_destroy]
+      
       params.require(:blogpost).permit(:title,
                                        :content,
-                                       locations_attributes: [
-                                         :latitude,
-                                         :longitude,
-                                         :label,
-                                         :id,
-                                         :_destroy],
-                                       trip_attributes: [
-                                         :id,
-                                         { locations_attributes: [
-                                             :latitude,
-                                             :longitude,
-                                             :label,
-                                             :id,
-                                             :_destroy]}
-                                       ])
+                                       locations_attributes: locations_attributes,
+                                       trip_attributes: trip_attributes,
+                                       image_attributes: image_attributes)
     end
 end

@@ -1,4 +1,4 @@
-<%= form_with(model: blogpost, local: true) do |form| %>
+<%= form_with(model: blogpost, local: true, html: {multipart: true} ) do |form| %>
   <% if blogpost.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(blogpost.errors.count, "error") %> prohibited this blogpost from being saved:</h2>
@@ -42,6 +42,21 @@
 	  <div class="links">
 	      <%= link_to_add_association 'add location', form, :locations,
 		  partial: 'locations/location_fields' %>
+	  </div>
+      </div>
+  </div>
+
+  <div>
+      <p><strong>Images:</strong></p>
+
+      <div id="images">
+	  <%= form.fields_for :images do |image_form| %>
+	      <%= render 'images/image_fields', f: image_form, destroy: true %>
+	  <% end %>
+
+	  <div class="links">
+	      <%= link_to_add_association 'add image', form, :images,
+		  partial: 'images/image_fields' %>
 	  </div>
       </div>
   </div>
