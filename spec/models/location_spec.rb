@@ -32,4 +32,32 @@ RSpec.describe Location, type: :model do
       expect(valid).to be_valid
     end
   end
+
+  describe '#longitude' do
+    it 'is invalid with blank longitude' do
+      invalid = FactoryGirl.build(:location, longitude: nil)
+      expect(invalid).not_to be_valid
+    end
+
+    it 'is invalid with non-numeric value' do
+      invalid = FactoryGirl.build(:location, longitude: 'xxx')
+      expect(invalid).not_to be_valid
+    end
+
+    it 'is invalid with a value outside of -180 to 180' do
+      invalid = FactoryGirl.build(:location, longitude: 200.0)
+      expect(invalid).not_to be_valid
+    end
+
+    # test edge cases
+    it 'is valid with a value -180.0' do
+      valid = FactoryGirl.build(:location, longitude: -180.0)
+      expect(valid).to be_valid
+    end
+
+    it 'is valid with a value 180.0' do
+      valid = FactoryGirl.build(:location, longitude: 180.0)
+      expect(valid).to be_valid
+    end
+  end
 end
