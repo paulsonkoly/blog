@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  belongs_to :locationable, polymorphic: true
+  belongs_to :locationable, polymorphic: true, optional: true
 
   {latitude: 90, longitude: 180}.each do |dimension, limit|
     validates dimension,

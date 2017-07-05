@@ -21,6 +21,21 @@
     <%= form.text_area :content, id: :blogpost_content %>
   </div>
 
+  <div>
+      <p><strong>Locations:</strong></p>
+
+      <div id="locations">
+	  <%= form.fields_for :locations do |location_form| %>
+	      <%= render 'locations/location_fields', f: location_form, destroy: true %>
+	  <% end %>
+
+	  <div class="links">
+	      <%= link_to_add_association 'add location', form, :locations,
+		  partial: 'locations/location_fields' %>
+	  </div>
+      </div>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
