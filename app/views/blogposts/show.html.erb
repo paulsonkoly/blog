@@ -10,5 +10,12 @@
   <%= @blogpost.content %>
 </p>
 
+<p>
+  <strong>Locations:</strong>
+  <% @blogpost.locations.each do |location| %>
+      <%= location.label %> @ lat: <%= location.latitude %>, long: <%= location.longitude%><br />
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_blogpost_path(@blogpost) %> |
 <%= link_to 'Back', blogposts_path %>
