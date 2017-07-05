@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :blogpost do
-    title "MyString"
+    sequence(:title) { |n| "My title ##{n}" }
     content "MyText"
   end
 end
