@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'cocoon'
 gem 'paperclip', '~> 5.0.0'
+gem 'underscore-rails' # dependency for gmaps
+gem 'gmaps4rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

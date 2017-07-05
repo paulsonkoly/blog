@@ -1,20 +1,61 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @blogpost.title %>
+    <strong>Title:</strong>
+    <%= @blogpost.title %>
+</p>
+
+
+<% if @blogpost.locations.count > 0 || @blogpost.trip %>
+    <div style='width: 800px;'>
+	<div id="map" style='width: 800px; height: 400px;'></div>
+    </div>
+
+    <script>
+     handler = Gmaps.build('Google');
+     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+	 markers = handler.addMarkers([
+	     <% @blogpost.locations.each do |location| %>
+	     {
+		 "lat": <%= location.latitude %>,
+		 "lng": <%= location.longitude %>,
+		 "infowindow": "<%= location.label %>"
+	     },
+	     <% end %>
+	 ]);
+	 handler.bounds.extendWith(markers);
+	 handler.fitMapToBounds();
+
+	 <% if @blogpost.trip %>
+	 polyOptions = {
+	     strokeColor: '#ff0000',
+	     strokeOpacity: 0.8,
+	     strokeWeight: 6,
+	 }
+
+	 polyline = handler.addPolyline([
+	     <% @blogpost.trip.locations.each do |location| %>
+	     { lat: <%= location.latitude %>,
+	       lng: <%= location.longitude %>
+	     },
+	     <% end %>
+	 ], polyOptions);
+
+	 handler.bounds.extendWith(polyline);
+	 handler.fitMapToBounds();
+	 <% end %>
+     });
+    </script>
+<% end %>
+
+<p>
+    <%= @blogpost.content %>
 </p>
 
 <p>
-  <strong>Content:</strong>
-  <%= @blogpost.content %>
-</p>
-
-<p>
-  <strong>Locations:</strong>
-  <% @blogpost.locations.each do |location| %>
-      <%= location.label %> @ lat: <%= location.latitude %>, long: <%= location.longitude%><br />
-  <% end %>
+    <% @blogpost.images.each do |image| %>
+	<%= image_tag image.file.url(:thumbnail) %>
+    <% end %>
 </p>
 
 <%= link_to 'Edit', edit_blogpost_path(@blogpost) %> |

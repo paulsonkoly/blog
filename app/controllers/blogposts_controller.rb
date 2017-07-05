@@ -79,6 +79,6 @@ class BlogpostsController < ApplicationController
                                        :content,
                                        locations_attributes: locations_attributes,
                                        trip_attributes: trip_attributes,
-                                       image_attributes: image_attributes)
+                                       images_attributes: image_attributes)
     end
 end
