@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :trip do
-    blogpost nil
+    association :blogpost
   end
 end
