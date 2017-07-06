@@ -1,41 +1,43 @@
 <h3><%= blogpost.title %> <small>3/6/2016</small></h3>
 
 <% if blogpost.locations.count > 0 || blogpost.trip %>
-    <div id="map" class="flex-video"></div>
+    <div id="map-<%= blogpost.id%>" class="flex-video"></div>
 
     <script>
-     handler = Gmaps.build('Google');
-     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-	 markers = handler.addMarkers([
-	     <% blogpost.locations.each do |location| %>
-	     {
-		 "lat": <%= location.latitude %>,
-		 "lng": <%= location.longitude %>,
-		 "infowindow": "<%= location.label %>"
-	     },
+     $(function(handler) {
+	 handler = Gmaps.build('Google');
+	 handler.buildMap({ provider: {}, internal: {id: 'map-<%= blogpost.id %>'}}, function(){
+	     markers = handler.addMarkers([
+		 <% blogpost.locations.each do |location| %>
+		 {
+		     "lat": <%= location.latitude %>,
+		     "lng": <%= location.longitude %>,
+		     "infowindow": "<%= location.label %>"
+		 },
+		 <% end %>
+	     ]);
+	     handler.bounds.extendWith(markers);
+	     handler.fitMapToBounds();
+
+	     <% if blogpost.trip %>
+	     polyOptions = {
+		 strokeColor: '#ff0000',
+		 strokeOpacity: 0.8,
+		 strokeWeight: 6,
+	     }
+
+	     polyline = handler.addPolyline([
+		 <% blogpost.trip.locations.each do |location| %>
+		 { lat: <%= location.latitude %>,
+		   lng: <%= location.longitude %>
+		 },
+		 <% end %>
+	     ], polyOptions);
+
+	     handler.bounds.extendWith(polyline);
+	     handler.fitMapToBounds();
 	     <% end %>
-	 ]);
-	 handler.bounds.extendWith(markers);
-	 handler.fitMapToBounds();
-
-	 <% if blogpost.trip %>
-	 polyOptions = {
-	     strokeColor: '#ff0000',
-	     strokeOpacity: 0.8,
-	     strokeWeight: 6,
-	 }
-
-	 polyline = handler.addPolyline([
-	     <% blogpost.trip.locations.each do |location| %>
-	     { lat: <%= location.latitude %>,
-	       lng: <%= location.longitude %>
-	     },
-	     <% end %>
-	 ], polyOptions);
-
-	 handler.bounds.extendWith(polyline);
-	 handler.fitMapToBounds();
-	 <% end %>
+	 });
      });
     </script>
 <% end %>
