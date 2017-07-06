@@ -36,6 +36,8 @@ gem 'paperclip', '~> 5.0.0'
 gem 'underscore-rails' # dependency for gmaps
 gem 'gmaps4rails'
 gem 'foundation-rails'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-foundation'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

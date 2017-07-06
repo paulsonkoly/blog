@@ -4,7 +4,7 @@ class BlogpostsController < ApplicationController
   # GET /blogposts
   # GET /blogposts.json
   def index
-    @blogposts = Blogpost.all
+    @blogposts = Blogpost.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /blogposts/1
