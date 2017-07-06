@@ -3,20 +3,16 @@ require 'rails_helper'
 RSpec.describe "blogposts/index", type: :view do
   before(:each) do
     assign(:blogposts, [
-      Blogpost.create!(
-        :title => "Title",
-        :content => "MyText"
-      ),
-      Blogpost.create!(
-        :title => "Title",
-        :content => "MyText"
-      )
-    ])
+             FactoryGirl.create(:blogpost, title: 'post-1'),
+             FactoryGirl.create(:blogpost, title: 'post-2')])
   end
 
   it "renders a list of blogposts" do
+    allow(view).to receive_messages(:will_paginate => nil)
+    
     render
-    assert_select "tr>td", :text => "Title".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+
+    expect(rendered).to match 'post-1'
+    expect(rendered).to match 'post-2'
   end
 end
