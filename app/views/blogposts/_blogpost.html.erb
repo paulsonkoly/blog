@@ -77,11 +77,15 @@
 <% end %>
 
 <div class="callout">
-    <ul class="menu simple float-left">
-	<li><a href="#">Author: Paul Sonkoly</a></li>
-	<li><a href="#">Comments: 3</a></li>
-    </ul>
+    <div class="float-left">
+	    <a href="#">Author: Paul Sonkoly</a>
+	    <a href="#">Comments: 3</a>
+	</ul>
+    </div>
 
-    <%= link_to 'Edit', edit_blogpost_path(blogpost), class: 'float-right' %>
+    <div class="float-right">
+	<%= link_to 'Destroy', blogpost, method: :delete, data: { confirm: 'Are you sure?' } %> |
+	<%= link_to 'Edit', edit_blogpost_path(blogpost) %>
+    </div>
     <br />
 </div>
