@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170713095249) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "blogposts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -24,7 +21,6 @@ ActiveRecord::Schema.define(version: 20170713095249) do
 
   create_table "images", force: :cascade do |t|
     t.string "label"
-    t.datetime "file_updated_at"
     t.integer "blogpost_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
