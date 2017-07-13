@@ -43,7 +43,10 @@
 	  <% end %>
 
 	  <%= link_to_add_association 'Add location', form, :locations,
-	      partial: 'locations/location_fields', class: 'button' %>
+	      partial: 'locations/location_fields',
+	      class: 'button',
+	  	  "data-association-insertion-method": 'append'
+	  %>
       </div>
 
       <div class="tabs-panel" id="images-fields">
@@ -52,7 +55,10 @@
 	  <% end %>
 
 	  <%= link_to_add_association 'Add image', form, :images,
-	      partial: 'images/image_fields', class: 'button' %>
+	      partial: 'images/image_fields',
+	      class: 'button',
+		  "data-association-insertion-method": 'append'
+	  %>
       </div>
   </div>
 
