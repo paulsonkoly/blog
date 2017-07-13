@@ -56,7 +56,7 @@
 		<% blogpost.images.each do |image| %>
 		    <li class="<%= "is-active" if active %> orbit-slide">
 			<figure class="orbit-figure">
-			    <%= image_tag image.file.url(:large), class: 'orbit-image', alt: 'some text' %>
+			    <%= image_tag image.file.url, class: 'orbit-image', alt: 'some text' %>
 			    <figcaption class="orbit-caption">Space, the final frontier.</figcaption>
 			</figure>
 		    </li>

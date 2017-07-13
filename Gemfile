@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
 gem 'cocoon'
-gem 'paperclip', '~> 5.0.0'
+gem 'carrierwave', '~> 1.0'
 gem 'underscore-rails' # dependency for gmaps
 gem 'gmaps4rails'
 gem 'foundation-rails', '~> 6.3.1.0'
