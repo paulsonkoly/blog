@@ -11,6 +11,8 @@ Things you may want to cover:
 
 * Configuration
 
+The app requires a DROPBOX API OAUTH2 token. To set it, set the following environment variable: `DROPBOX_OAUTH2_ACCESS_TOKEN`. For heroku deployment don't forget to execute the heroku config:set command.
+
 * Database creation
 
 * Database initialization
