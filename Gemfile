@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'cocoon'
 gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 # the normal release 0.0.1 is missing this check in, and without this it doesn't work
 gem 'fog-dropbox', github: 'fog/fog-dropbox', ref: 'e14ce25'
 gem 'underscore-rails' # dependency for gmaps
