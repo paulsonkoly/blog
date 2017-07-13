@@ -42,7 +42,7 @@
     </script>
 <% end %>
 
-<p><%= blogpost.content %></p>
+<p><%= markdown(blogpost.content) %></p>
 
 <% if blogpost.images.count > 0 %>
     <div class="orbit" role="region" aria-label="Pictures" data-orbit>

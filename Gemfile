@@ -38,6 +38,8 @@ gem 'gmaps4rails'
 gem 'foundation-rails', '~> 6.3.1.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-foundation'
+gem 'redcarpet'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
