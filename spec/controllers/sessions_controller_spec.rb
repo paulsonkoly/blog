@@ -11,6 +11,13 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "POST #create" do
+    context 'with non existent user' do
+      it 'returns http success' do
+        post :create, { params: { session: { user_name: 'nonexistent', password: '' } } }
+        expect(response).to be_success
+      end
+    end
+    
     context 'with invallid credentials' do
       before do
         post :create, params: { session: { user_name: user.name,
