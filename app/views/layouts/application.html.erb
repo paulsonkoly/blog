@@ -24,8 +24,16 @@
 		    <li><a href="#">Three</a></li>
 		</ul>
 	    </div>
-	</div>
-	
+	    <div class="top-bar-right">
+		<ul class="menu">
+		    <% if current_user %>
+			<li><%= link_to "Logout #{current_user.name}", logout_path, method: 'delete' %></li>
+		    <% else %>
+			<li><%= link_to "Login", new_session_path %></li>
+		    <% end %>
+		</ul>
+	    </div>
+	</div>	
 	<div class="callout large primary">
 	    <div class="row column text-center">
 		<h1>Blog of S/V Charisma</h1>
