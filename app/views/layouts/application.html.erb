@@ -34,6 +34,13 @@
 	</div>
 	
 	<div class="row medium-8 large-7 columns">
+	    <% if flash[:notice] %>
+		<div class="callout primary"><%= flash[:notice] %></div>
+	    <% end %>
+	    <% if flash[:alert] %>
+		<div class="callout alert"><%= flash[:alert] %></div>
+	    <% end %>
+
 	    <%= yield %>
 	</div>
     </body>
