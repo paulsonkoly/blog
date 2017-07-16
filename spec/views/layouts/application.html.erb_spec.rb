@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "layouts/application.html.erb", type: :view do
+  before(:each) do
+    # The TestController is not correctly inferred in this case, and
+    # does not inherit from ApplicationController.
+    controller.class.include(SessionsHelper)
+  end
 
   it 'displays the alert flash' do
     flash.alert = 'Alert message'
@@ -27,7 +32,7 @@ RSpec.describe "layouts/application.html.erb", type: :view do
     context 'with a logged in user' do
       let (:user) { FactoryGirl.create :user }
       before(:each) do
-        controller.helpers.login(user)
+        controller.login(user)
       end
     
       it 'displays the logged in user\'s name' do
