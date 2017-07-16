@@ -46,6 +46,11 @@ RSpec.describe Location, type: :model do
       loc = FactoryGirl.build(:location, latitude: '73\'30')
       expect(loc.latitude).to eq(73.5)
     end
+
+    it 'has to convert negative numbers' do
+      loc = FactoryGirl.build(:location, latitude: '-73\'30')
+      expect(loc.latitude).to eq(-73.5)
+    end
   end
 
   describe '#longitude' do
