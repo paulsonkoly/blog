@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "layouts/application.html.erb", type: :view do
-  before(:each) do
-    # The TestController is not correctly inferred in this case, and
-    # does not inherit from ApplicationController.
-    controller.class.include(SessionsHelper)
-  end
-
   it 'displays the alert flash' do
     flash.alert = 'Alert message'
 

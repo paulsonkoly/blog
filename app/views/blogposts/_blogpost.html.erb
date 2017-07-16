@@ -85,9 +85,11 @@
 	</ul>
     </div>
 
-    <div class="float-right">
-	<%= link_to 'Destroy', blogpost, method: :delete, data: { confirm: 'Are you sure?' } %> |
-	<%= link_to 'Edit', edit_blogpost_path(blogpost) %>
-    </div>
+    <% if can? :manage, Blogpost %>
+	<div class="float-right">	
+	    <%= link_to 'Destroy', blogpost, method: :delete, data: { confirm: 'Are you sure?' } %> |
+	    <%= link_to 'Edit', edit_blogpost_path(blogpost) %>
+	</div>
+    <% end %>
     <br />
 </div>
