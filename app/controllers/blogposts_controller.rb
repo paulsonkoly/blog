@@ -1,10 +1,10 @@
 class BlogpostsController < ApplicationController
-  before_action :set_blogpost, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /blogposts
   # GET /blogposts.json
   def index
-    @blogposts = Blogpost.paginate(page: params[:page], per_page: 3)
+    @blogposts = @blogposts.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /blogposts/1
@@ -64,11 +64,6 @@ class BlogpostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_blogpost
-      @blogpost = Blogpost.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def blogpost_params
       locations_attributes = [:latitude, :longitude, :label, :id, :_destroy]

@@ -1,11 +1,13 @@
 class SessionsController < ApplicationController
+  skip_authorization_check
+  
   def new
   end
 
   def create    
     user = User.find_by(name: sessions_params[:user_name])    
     if user && user.authenticate(sessions_params[:user_password])
-      helpers.login user
+      login user
       redirect_to root_url
     else
       flash.now[:alert] = 'Invalid name/password combination'
@@ -14,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    helpers.logout
+    logout
     redirect_to root_url
   end
 

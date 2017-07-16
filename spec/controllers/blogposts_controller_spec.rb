@@ -38,7 +38,8 @@ RSpec.describe BlogpostsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # BlogpostsController. Be sure to keep this updated too.
-  let(:valid_session) {}
+  let(:logged_in_user) { FactoryGirl.create :user }
+  let(:valid_session) { { user_id: logged_in_user.id } }
 
   describe "GET #index" do
     it "returns a success response" do

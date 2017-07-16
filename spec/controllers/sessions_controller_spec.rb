@@ -29,7 +29,7 @@ RSpec.describe SessionsController, type: :controller do
       end
       
       it "doesn't set the current user" do
-        expect(controller.helpers.current_user).to be_nil
+        expect(controller.current_user).to be_nil
       end
     end
 
@@ -44,19 +44,19 @@ RSpec.describe SessionsController, type: :controller do
       end
       
       it 'sets current_user' do
-        expect(controller.helpers.current_user).not_to be_nil
+        expect(controller.current_user).not_to be_nil
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "removes the current user" do
-      controller.helpers.login(user)
-      expect { delete :destroy }.to change { controller.helpers.current_user }.to(nil)
+      controller.login(user)
+      expect { delete :destroy }.to change { controller.current_user }.to(nil)
     end
 
     it 'redirects to the root url' do
-      delete :destroy
+      delete :destroy      
       expect(response).to redirect_to(root_url)
     end
   end

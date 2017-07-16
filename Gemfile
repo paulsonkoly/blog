@@ -40,6 +40,7 @@ gem 'foundation-rails', '~> 6.3.1.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-foundation'
 gem 'redcarpet'
+gem 'cancancan', '~> 2.0'
 
 
 # Use Capistrano for deployment
