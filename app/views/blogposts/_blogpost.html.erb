@@ -57,7 +57,7 @@
 		    <li class="<%= "is-active" if active %> orbit-slide">
 			<figure class="orbit-figure">
 			    <%= image_tag image.file.url, class: 'orbit-image', alt: 'some text' %>
-			    <figcaption class="orbit-caption">Space, the final frontier.</figcaption>
+			    <figcaption class="orbit-caption"><%= image.label %></figcaption>
 			</figure>
 		    </li>
 		    <% active = false %>

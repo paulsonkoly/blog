@@ -68,7 +68,7 @@ class BlogpostsController < ApplicationController
     def blogpost_params
       locations_attributes = [:latitude, :longitude, :label, :id, :_destroy]
       trip_attributes = [:id, { locations_attributes: locations_attributes }]
-      image_attributes = [:id, :file, :_destroy]
+      image_attributes = [:id, :file, :label, :_destroy]
       
       params.require(:blogpost).permit(:title,
                                        :content,
