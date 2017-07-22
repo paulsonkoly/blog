@@ -1,4 +1,4 @@
-<h3><%= blogpost.title %> <small>3/6/2016</small></h3>
+<h3><%= blogpost.title %> <small><%= human_date(blogpost.created_at) %></small></h3>
 
 <% if blogpost.locations.count > 0 || blogpost.trip %>
     <div id="map-<%= blogpost.id%>" class="flex-video"></div>

@@ -10,7 +10,8 @@ RSpec.describe "blogposts/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Title/)
+    date = @blogpost.created_at
+    expect(rendered).to match(%r{Title.*#{date.day}/#{date.month}/#{date.year}})
     expect(rendered).to match(/MyText/)
   end
 end
