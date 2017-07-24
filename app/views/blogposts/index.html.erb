@@ -1,5 +1,6 @@
 <% @blogposts.each do |blogpost| %>
     <%= render 'blogpost', blogpost: blogpost %>
+    <%= render 'blogpost_callout', blogpost: blogpost %>
 <% end %>
 
 <div class="text-center">

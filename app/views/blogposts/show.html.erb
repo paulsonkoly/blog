@@ -1,14 +1,2 @@
 <%= render 'blogpost', blogpost: @blogpost %>
-
-<% @blogpost.comments.each do |comment| %>
-    <%= markdown(comment.content) %>
-<% end %>
-
-Leave a comment
-
-<%= form_for([@blogpost, @blogpost.comments.build]) do |f| %>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-
-    <%= f.submit 'Send', class: 'button' %>
-<% end %>
+<%= render 'comments/comment_block', commentable: @blogpost %>
