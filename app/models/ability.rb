@@ -8,6 +8,7 @@ class Ability
       can :manage, :all
     else
       can :read, Blogpost
+      can :create, Comment
     end
   end
 end
