@@ -24,6 +24,12 @@ otherwise we would include the freshly built comment %>
     <div class="comment-section-box">
 	<div class="row">
 	    <div class="small-12 column">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+		
 		<%= f.label :content, "Leave a comment" %>
 		<%= f.text_area :content, rows: 10 %>
 

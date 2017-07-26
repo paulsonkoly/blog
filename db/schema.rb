@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724081736) do
+ActiveRecord::Schema.define(version: 20170726074608) do
 
   create_table "blogposts", force: :cascade do |t|
     t.string "title"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20170724081736) do
     t.integer "blogpost_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", default: ""
+    t.string "email", default: ""
     t.index ["blogpost_id"], name: "index_comments_on_blogpost_id"
   end
 
