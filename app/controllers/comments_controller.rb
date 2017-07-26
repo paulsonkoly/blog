@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to @comment.blogpost, notice: 'Your comment was succesfully sent to the server.' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { redirect_to @comment.blogpost, notice: 'Your comment couldn\'t be saved.' }
+        format.html { redirect_to @comment.blogpost, alert: 'Your comment couldn\'t be saved.' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
