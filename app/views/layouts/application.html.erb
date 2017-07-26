@@ -45,10 +45,10 @@
 	
 	<div class="row medium-8 large-7 columns">
 	    <% if flash[:notice] %>
-		<div class="callout primary"><%= flash[:notice] %></div>
+		<div class="callout primary"><%= flash[:notice].html_safe %></div>
 	    <% end %>
 	    <% if flash[:alert] %>
-		<div class="callout alert"><%= flash[:alert] %></div>
+		<div class="callout alert"><%= flash[:alert].html_safe %></div>
 	    <% end %>
 
 	    <%= yield %>
