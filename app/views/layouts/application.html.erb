@@ -18,12 +18,11 @@
 	<div class="top-bar">
 	    <div class="top-bar-left">
 		<ul class="menu">
-		    <li class="menu-text">Blog</li>
+		    <li><%= link_to 'Blog', blogposts_path %></li>
 		    <% if can? :create, Blogpost %>
 			<li><%= link_to 'New Blogpost', new_blogpost_path %></li>
 		    <% end %>
-		    <li><a href="#">Two</a></li>
-		    <li><a href="#">Three</a></li>
+		    <%# further menu items go here %>
 		</ul>
 	    </div>
 	    <div class="top-bar-right">
