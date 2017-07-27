@@ -1,3 +1,5 @@
+require 'geokit'
+
 class Trip < ApplicationRecord
   belongs_to :blogpost
 
@@ -7,4 +9,10 @@ class Trip < ApplicationRecord
   validates :locations, length: { minimum: 2,
                                   too_short: "should have at least two locations" }
 
+  # returns the length of a trip
+  def length
+    locations.each_cons(2).map do |from, to|
+      from.distance_to(to)
+    end.sum.round(2)
+  end
 end

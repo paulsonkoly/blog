@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/alexyakubenko/geokit-acts-as-mappable.git
+  revision: 48c1c26c234f9cc64f390bb1182f8e03effc1f5e
+  tag: 0.0.2
+  specs:
+    geokit-acts-as-mappable (0.0.2)
+      geokit (~> 1.5)
+
+GIT
   remote: https://github.com/fog/fog-dropbox.git
   revision: e14ce25fcbba429bb12d972367061750cf940863
   ref: e14ce25
@@ -102,6 +110,7 @@ GEM
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
       sprockets-es6 (>= 0.9.0)
+    geokit (1.11.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     gmaps4rails (2.1.2)
@@ -264,6 +273,7 @@ DEPENDENCIES
   factory_girl_rails
   fog-dropbox!
   foundation-rails (~> 6.3.1.0)
+  geokit-acts-as-mappable!
   gmaps4rails
   jbuilder (~> 2.5)
   jquery-rails

@@ -42,6 +42,12 @@
     </script>
 <% end %>
 
+<div class="trip-properties">
+    <% if blogpost.trip %>
+	Distance travelled: <%= blogpost.trip.length %>nm
+    <% end %>
+</div>
+
 <%= markdown(blogpost.content) %>
 
 <% if blogpost.images.count > 0 %>

@@ -1,5 +1,7 @@
 class Location < ApplicationRecord  
   belongs_to :locationable, polymorphic: true, optional: true
+  acts_as_mappable lat_column_name: :latitude, lng_column_name: :longitude,
+                   default_units: :nms
 
   { latitude: 90, longitude: 180 }.each do |dimension, limit|
     validates dimension,

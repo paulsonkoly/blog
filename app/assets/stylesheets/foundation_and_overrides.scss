@@ -81,3 +81,17 @@ $comment-section-padding: $global-padding;
   background-color: $comment-form-bg;
   padding: $global-padding;
 }
+
+.flex-video {
+    margin-bottom: 0px;
+}
+
+.trip-properties {
+    background-color: $light-gray;
+    text-align: right;
+    color: $dark-gray;
+    font-style: italic;
+    margin-bottom: 1rem;
+    padding: 10px 2px;
+    border-bottom: 1px solid $medium-gray;
+}

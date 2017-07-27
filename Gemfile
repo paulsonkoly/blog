@@ -41,7 +41,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-foundation'
 gem 'redcarpet'
 gem 'cancancan', '~> 2.0'
-
+gem 'geokit-acts-as-mappable', :github => 'alexyakubenko/geokit-acts-as-mappable', tag: '0.0.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
