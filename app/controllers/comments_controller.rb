@@ -17,6 +17,29 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @blogpost = @comment.blogpost
+  end
+
+  def update
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to @comment.blogpost,
+                      notice: 'Comment was successfully updated.' }
+      else
+        @blogpost = @comment.blogpost
+        format.html { render :edit }
+      end
+    end
+  end
+
+  def destroy
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to @comment.blogpost, notice: 'Comment deleted.' }
+    end
+  end
+
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params

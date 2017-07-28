@@ -1,0 +1,30 @@
+<%= form_for([commentable, comment], class: 'comment-section-form') do |f| %>
+    <div class="comment-section-box">
+	<% if comment.errors.any? %>
+	    <div class="callout alert large">
+		<h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+		<ul>
+		    <% comment.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		    <% end %>
+		</ul>
+	    </div>
+	<% end %>
+
+	<div class="row">
+	    <div class="small-12 column">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+
+		<%= f.label :content, "Leave a comment" %>
+		<%= f.text_area :content, rows: 10 %>
+
+		<%= f.submit 'Send', class: 'button expanded' %>
+	    </div>
+	</div>
+    </div>
+<% end %>
