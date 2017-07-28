@@ -1,5 +1,6 @@
 class Blogpost < ApplicationRecord
   validates :title, presence: true
+  validates :date, presence: true
 
   has_many :locations, as: :locationable, dependent: :destroy
   accepts_nested_attributes_for :locations, allow_destroy: true
@@ -12,5 +13,5 @@ class Blogpost < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
-  default_scope { order(created_at: :desc) }
+  default_scope { order(date: :desc) }
 end

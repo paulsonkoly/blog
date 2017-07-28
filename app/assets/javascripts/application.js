@@ -17,6 +17,7 @@
 //= require underscore
 //= require gmaps/google
 //= require foundation
+//= require foundation-datepicker
 //= require_tree .
 
 $(function() { $(document).foundation(); });

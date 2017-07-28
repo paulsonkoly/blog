@@ -71,6 +71,7 @@ class BlogpostsController < ApplicationController
       image_attributes = [:id, :file, :label, :_destroy]
       
       params.require(:blogpost).permit(:title,
+                                       :date,
                                        :content,
                                        locations_attributes: locations_attributes,
                                        trip_attributes: trip_attributes,

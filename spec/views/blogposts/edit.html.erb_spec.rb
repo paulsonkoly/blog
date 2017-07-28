@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "blogposts/edit", type: :view do
   before(:each) do
-    @blogpost = assign(:blogpost, Blogpost.create!(
-      :title => "MyString",
-      :content => "MyText"
-    ))
+    @blogpost = assign(:blogpost, FactoryGirl.create(:blogpost))
   end
 
   it "renders the edit blogpost form" do

@@ -25,6 +25,12 @@
 	      <%= form.text_field :title, id: :blogpost_title %>
 	  </div>
 
+	  <div class="field">	      
+	      <%= form.label :date %>
+	      <%= form.text_field :date, id: :blogpost_date %>
+	      <script>$('#blogpost_date').fdatepicker({ format: "yyyy-mm-dd"} );</script>
+	  </div>
+
 	  <div class="field">
 	      <%= form.label :content %>
 	      <%= form.text_area :content, id: :blogpost_content, rows: 10 %>
