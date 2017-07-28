@@ -1,0 +1,8 @@
+<p>Total distance travelled</p>
+<div class="stat"><%= Trip.total_distance %>nm</div>
+<blockquote>This number is merely the accumulated sum of the trip lengths based on the stored waypoints. The actual distance is likely to be more than this value.</blockquote>
+<% if Trip.count > 0 %>
+    <p>Longest trip</p>
+    <div class="stat"><%= Trip.longest_distance.length %>nm</div>
+    <%= link_to Trip.longest_distance.blogpost.title, blogpost_path(Trip.longest_distance.blogpost) %></div>
+<% end %>

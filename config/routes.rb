@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'stats/show'
+
   resources :sessions, only: [ :new, :create ]
   delete '/logout', to: 'sessions#destroy'
   root to: 'blogposts#index', page: 1

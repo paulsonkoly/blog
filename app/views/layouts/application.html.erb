@@ -19,6 +19,7 @@
 	    <div class="top-bar-left">
 		<ul class="menu">
 		    <li><%= link_to 'Blog', blogposts_path %></li>
+		    <li><%= link_to 'Stats', stats_show_path %></li>
 		    <% if can? :create, Blogpost %>
 			<li><%= link_to 'New Blogpost', new_blogpost_path %></li>
 		    <% end %>
