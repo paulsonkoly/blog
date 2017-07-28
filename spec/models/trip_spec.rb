@@ -39,15 +39,13 @@ RSpec.describe Trip, type: :model do
 
     it { is_expected.to respond_to(:longest_distance) }
 
-    # TODO : this knows too much about the implementation. The correct
-    # thing to do is to put the trips with the right lengths into the
-    # database and let the test fetch the real things.
     describe '.longest_distance' do
       it 'returns the correct value' do
-        trip1, trip2 = 2.times.map { FactoryGirl.create :trip }
-        allow(trip1).to receive(:length).and_return(10)
-        allow(trip2).to receive(:length).and_return(20)
-        allow(Trip).to receive(:all).and_return([trip1, trip2])
+        # while this does not necessarily guarantee that trip2 is longer
+        # in practice it will be. Note that location coordinates are randomly
+        # generated on the Earth surface
+        FactoryGirl.create :trip, location_count: 2
+        trip2 = FactoryGirl.create :trip, location_count: 20
 
         expect(subject.longest_distance).to eq(trip2)
       end

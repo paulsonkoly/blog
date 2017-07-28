@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :location do
-    latitude 1.5
-    longitude 1.5
+    latitude { rand(-90..90) }
+    longitude { rand(-180..180) }
     label "MyString"
 
     factory :location_for_blogpost do
