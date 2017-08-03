@@ -62,6 +62,13 @@ RSpec.describe BlogpostsController, type: :controller do
       get :new, params: {}, session: valid_session
       expect(response).to be_success
     end
+
+    context 'without signing in' do
+      it 'redirects with access denied' do
+        get :new, params: {}, session: {}
+        expect(response).to redirect_to(root_url)
+      end
+    end
   end
 
   describe "GET #edit" do
