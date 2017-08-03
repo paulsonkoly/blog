@@ -26,6 +26,13 @@ RSpec.describe CommentsController, type: :controller do
              session: {}
       }.to change(Comment, :count).by(1)
     end
+
+    context 'with invalid params' do
+      it "redirects to Blogpost#show" do
+        post :create, params: {comment: invalid_attributes , blogpost_id: blogpost.to_param}, session: {}
+        expect(response).to redirect_to(blogpost)
+      end
+    end
   end
 
   describe "GET #edit" do
