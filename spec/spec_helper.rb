@@ -1,6 +1,7 @@
 # TODO : this shouldn't be needed.
 require 'rspec-html-matchers'
 require 'view_spec_helpers'
+require 'controller_spec_helpers'
 require 'simplecov'
 
 SimpleCov.start do
@@ -105,4 +106,6 @@ RSpec.configure do |config|
   config.include RSpecHtmlMatchers
 
   config.include ViewSpecHelpers, file_path: %r{\bspec/views/}
+
+  config.include ControllerSpecHelpers, file_path: %r{\bspec/controllers/}
 end
