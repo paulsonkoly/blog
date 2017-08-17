@@ -157,23 +157,25 @@ RSpec.describe BlogpostsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    let :blogpost { Blogpost.create! valid_attributes }
+    before :each do
+      @blogpost = Blogpost.create! valid_attributes
+    end
 
     it "destroys the requested blogpost" do
       expect {
-        delete :destroy, params: {id: blogpost.to_param}, session: valid_session
+        delete :destroy, params: {id: @blogpost.to_param}, session: valid_session
       }.to change(Blogpost, :count).by(-1)
     end
 
     it "redirects to the blogposts list" do
-      delete :destroy, params: {id: blogpost.to_param}, session: valid_session
+      delete :destroy, params: {id: @blogpost.to_param}, session: valid_session
       expect(response).to redirect_to(blogposts_url)
     end
 
     context 'when no user is logged in' do
       it "denies access" do
         expect {
-          delete :destroy, params: {id: blogpost.to_param}, session: {}
+          delete :destroy, params: {id: @blogpost.to_param}, session: {}
         }.to deny_access
       end
     end
