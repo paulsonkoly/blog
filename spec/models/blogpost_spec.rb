@@ -13,7 +13,7 @@ RSpec.describe Blogpost, type: :model do
 
   context 'with a blank date' do
     it 'is invalid' do
-      invalid = FactoryGirl.build(:blogpost, date: nil)    
+      invalid = FactoryGirl.build(:blogpost, date: nil)
       expect(invalid).not_to be_valid
     end
   end

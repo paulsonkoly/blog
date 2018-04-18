@@ -77,7 +77,7 @@ RSpec.describe BlogpostsController, type: :controller do
       get :edit, params: {id: blogpost.to_param}, session: valid_session
       expect(response).to be_success
     end
-   
+
     context 'when no user is logged in' do
       it "denies access" do
         expect {
