@@ -1,4 +1,4 @@
-class Location < ApplicationRecord  
+class Location < ApplicationRecord
   belongs_to :locationable, polymorphic: true, optional: true
   acts_as_mappable lat_column_name: :latitude, lng_column_name: :longitude,
                    default_units: :nms
@@ -8,7 +8,7 @@ class Location < ApplicationRecord
               presence: true,
               numericality: true,
               inclusion: { in: -limit .. limit,
-                           message: "%{value} should be in the intervall -#{limit} to #{limit}" }    
+                           message: "%{value} should be in the intervall -#{limit} to #{limit}" }
   end
 
   [ :latitude, :longitude ].each do |dimension|
