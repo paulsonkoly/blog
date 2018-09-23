@@ -1,21 +1,25 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "blogposts/show", type: :view do
-  before(:each) do
-    @blogpost = assign(:blogpost, FactoryGirl.create(:blogpost))
+RSpec.describe 'blogposts/show', type: :view do
+  let(:blogpost) { FactoryGirl.create(:blogpost) }
+
+  before { assign(:blogpost, blogpost) }
+
+  it 'renders attributes in <p>' do
+    render
+    date = blogpost.date
+    regexp = %r{#{blogpost.title}.*#{date.day}/#{date.month}/#{date.year}}
+    expect(rendered).to match(regexp)
+    expect(rendered).to match(blogpost.content)
   end
 
-  it "renders attributes in <p>" do
-    render
-    date = @blogpost.date
-    expect(rendered).to match(%r{#{@blogpost.title}.*#{date.day}/#{date.month}/#{date.year}})
-    expect(rendered).to match(@blogpost.content)
-  end
-
-  it "renders the comment form" do
+  it 'renders the comment form' do
     render
 
-    expect(rendered).to have_form(blogpost_comments_path(blogpost_id: @blogpost.to_param), :post) do
+    path = blogpost_comments_path(blogpost_id: blogpost.to_param)
+    expect(rendered).to have_form(path, :post) do
       with_tag 'input', with: { name: 'comment[name]' }
       with_tag 'input', with: { name: 'comment[email]' }
       with_tag 'textarea', with: { name: 'comment[content]' }
@@ -23,14 +27,16 @@ RSpec.describe "blogposts/show", type: :view do
   end
 
   context 'with a comment' do
-    before (:each) do
-      @blogpost.comments.create(FactoryGirl.attributes_for :comment, content: 'hello')
-      @comment = @blogpost.comments.first
+    let(:comment) { blogpost.comments.first }
+
+    before do
+      blogpost.comments.create(FactoryGirl.attributes_for(:comment,
+                                                          content: 'hello'))
     end
 
     it 'renders the comments' do
       render
-      expect(rendered).to match("hello")
+      expect(rendered).to match('hello')
     end
 
     it 'doesn\'t output double <p> tags' do
@@ -39,23 +45,23 @@ RSpec.describe "blogposts/show", type: :view do
     end
 
     context 'with a logged in user' do
-      before (:each) { allow(view).to receive(:can?).and_return(true) }
+      before { allow(view).to receive(:can?).and_return(true) }
 
       it 'renders the edit link' do
         render
-        expect(rendered).to have_tag 'a', with: {
-                                       href: edit_blogpost_comment_path(blogpost_id: @blogpost.to_param,
-                                                                        id: @comment.to_param) }
+        path = edit_blogpost_comment_path(blogpost_id: blogpost.to_param,
+                                          id: comment.to_param)
+        expect(rendered).to have_tag 'a', with: { href: path }
       end
 
       it 'renders the destroy link' do
         render
-        expect(rendered).to have_tag 'a', with: {
-                                       href: blogpost_comment_path(blogpost_id: @blogpost.to_param,
-                                                                   id: @comment.to_param),
-                                       "data-method": 'delete' }
+        path = blogpost_comment_path(blogpost_id: blogpost.to_param,
+                                     id: comment.to_param)
+        expect(rendered).to have_tag('a',
+                                     with: { href: path,
+                                             'data-method': 'delete' })
       end
-
     end
   end
 end

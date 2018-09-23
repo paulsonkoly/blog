@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "layouts/application.html.erb", type: :view do
+RSpec.describe 'layouts/application.html.erb', type: :view do
   it 'displays the alert flash' do
     flash.alert = 'Alert message'
 
@@ -24,11 +26,10 @@ RSpec.describe "layouts/application.html.erb", type: :view do
     end
 
     context 'with a logged in user' do
-      let (:user) { FactoryGirl.create :user }
-      before(:each) do
-        controller.login(user)
-      end
-    
+      let(:user) { FactoryGirl.create :user }
+
+      before { controller.login(user) }
+
       it 'displays the logged in user\'s name' do
         render
         expect(rendered).to match "Logout #{user.name}"
