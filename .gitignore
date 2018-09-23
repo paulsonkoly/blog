@@ -24,3 +24,5 @@
 public/system/
 public/uploads/
 coverage/
+
+spec/examples.txt
