@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :location do
     latitude { rand(-90..90) }
     longitude { rand(-180..180) }
-    label "MyString"
+    label { 'MyString' }
 
     factory :location_for_blogpost do
       association :locationable, factory: :blogpost

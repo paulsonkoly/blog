@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :trip do
     blogpost
 
-    transient { location_count 2 }
+    transient { location_count { 2 } }
 
     after(:build) do |trip, evaluator|
       # ensure that we are valid by adding 2 locations
