@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module ControllerSpecHelpers
-  RSpec::Matchers::define :deny_access do
+  RSpec::Matchers.define :deny_access do
     match do |actual|
       actual.call
       assert_redirected_to(controller.root_url)
