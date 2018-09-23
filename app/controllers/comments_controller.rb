@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
   include ActionView::Helpers::TextHelper
-  
+
   load_and_authorize_resource
-  
+
   def create
     post = Blogpost.find(params[:blogpost_id])
     @comment = post.comments.create(comment_params)
@@ -24,8 +24,10 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment.blogpost,
-                      notice: 'Comment was successfully updated.' }
+        format.html do
+          redirect_to @comment.blogpost,
+                      notice: 'Comment was successfully updated.'
+        end
       else
         @blogpost = @comment.blogpost
         format.html { render :edit }
@@ -41,17 +43,18 @@ class CommentsController < ApplicationController
   end
 
   private
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
     params.require(:comment).permit(:content, :name, :email)
   end
 
   def comment_error_block(comment)
-    output = "<h2>#{pluralize(comment.errors.count, "error")} prohibited this comment from being saved:</h2>\n"
+    output = "<h2>#{pluralize(comment.errors.count, 'error')} prohibited this comment from being saved:</h2>\n"
     output << "<ul>\n"
     comment.errors.full_messages.each do |message|
       output << "<li>#{message}</li>\n"
-    end       
+    end
     output << "</ul>\n"
     output
   end

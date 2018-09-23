@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Location < ApplicationRecord
   belongs_to :locationable, polymorphic: true, optional: true
   acts_as_mappable lat_column_name: :latitude, lng_column_name: :longitude,
@@ -7,19 +9,19 @@ class Location < ApplicationRecord
     validates dimension,
               presence: true,
               numericality: true,
-              inclusion: { in: -limit .. limit,
+              inclusion: { in: -limit..limit,
                            message: "%{value} should be in the intervall -#{limit} to #{limit}" }
   end
 
-  [ :latitude, :longitude ].each do |dimension|
+  %i[latitude longitude].each do |dimension|
     define_method(:"#{dimension}=") do |actual|
       case actual
       when String
         if actual =~ /(-?\d{1,3})'([0-5]?\d(?!\d))(\.\d+)?/
-          deg = $1.to_i
-          min = $2&.to_i&.fdiv(60) || 0
+          deg = Regexp.last_match(1).to_i
+          min = Regexp.last_match(2)&.to_i&.fdiv(60) || 0
           min *= -1 if deg < 0
-          dec = $3&.to_f&.fdiv(60) || 0
+          dec = Regexp.last_match(3)&.to_f&.fdiv(60) || 0
           dec *= -1 if deg < 0
 
           return write_attribute(dimension, deg + min + dec)

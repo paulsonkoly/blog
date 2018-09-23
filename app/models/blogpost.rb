@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Blogpost < ApplicationRecord
   validates :title, presence: true
   validates :date, presence: true

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def markdown(text)
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
@@ -9,7 +11,7 @@ module ApplicationHelper
   #   <%= image_tag gravatar_url("you@youremail.com", 64), alt: "" %>
   #
   def gravatar_url(email, size)
-    gravatar = Digest::MD5::hexdigest(email).downcase
+    gravatar = Digest::MD5.hexdigest(email).downcase
     "http://gravatar.com/avatar/#{gravatar}.png?s=#{size}"
   end
 end

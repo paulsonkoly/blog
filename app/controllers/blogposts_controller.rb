@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BlogpostsController < ApplicationController
   load_and_authorize_resource
 
@@ -9,8 +11,7 @@ class BlogpostsController < ApplicationController
 
   # GET /blogposts/1
   # GET /blogposts/1.json
-  def show
-  end
+  def show; end
 
   # GET /blogposts/new
   def new
@@ -64,17 +65,18 @@ class BlogpostsController < ApplicationController
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def blogpost_params
-      locations_attributes = [:latitude, :longitude, :label, :id, :_destroy]
-      trip_attributes = [:id, { locations_attributes: locations_attributes }]
-      image_attributes = [:id, :file, :label, :_destroy]
-      
-      params.require(:blogpost).permit(:title,
-                                       :date,
-                                       :content,
-                                       locations_attributes: locations_attributes,
-                                       trip_attributes: trip_attributes,
-                                       images_attributes: image_attributes)
-    end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def blogpost_params
+    locations_attributes = %i[latitude longitude label id _destroy]
+    trip_attributes = [:id, { locations_attributes: locations_attributes }]
+    image_attributes = %i[id file label _destroy]
+
+    params.require(:blogpost).permit(:title,
+                                     :date,
+                                     :content,
+                                     locations_attributes: locations_attributes,
+                                     trip_attributes: trip_attributes,
+                                     images_attributes: image_attributes)
+  end
 end

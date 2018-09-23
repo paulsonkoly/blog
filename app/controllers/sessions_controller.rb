@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   skip_authorization_check
-  
-  def new
-  end
 
-  def create    
-    user = User.find_by(name: sessions_params[:user_name])    
-    if user && user.authenticate(sessions_params[:user_password])
+  def new; end
+
+  def create
+    user = User.find_by(name: sessions_params[:user_name])
+    if user&.authenticate(sessions_params[:user_password])
       login user
       redirect_to root_url
     else

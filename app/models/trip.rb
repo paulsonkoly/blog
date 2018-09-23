@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'geokit'
 
 class Trip < ApplicationRecord
@@ -7,7 +9,7 @@ class Trip < ApplicationRecord
   accepts_nested_attributes_for :locations, allow_destroy: true
 
   validates :locations, length: { minimum: 2,
-                                  too_short: "should have at least two locations" }
+                                  too_short: 'should have at least two locations' }
 
   # The length of a trip.
   def length
