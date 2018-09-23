@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'blogposts/show', type: :view do
-  let(:blogpost) { FactoryGirl.create(:blogpost) }
+  let(:blogpost) { FactoryBot.create(:blogpost) }
 
   before { assign(:blogpost, blogpost) }
 
@@ -30,7 +30,7 @@ RSpec.describe 'blogposts/show', type: :view do
     let(:comment) { blogpost.comments.first }
 
     before do
-      blogpost.comments.create(FactoryGirl.attributes_for(:comment,
+      blogpost.comments.create(FactoryBot.attributes_for(:comment,
                                                           content: 'hello'))
     end
 

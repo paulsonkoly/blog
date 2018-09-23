@@ -26,7 +26,7 @@ RSpec.describe 'layouts/application.html.erb', type: :view do
     end
 
     context 'with a logged in user' do
-      let(:user) { FactoryGirl.create :user }
+      let(:user) { FactoryBot.create :user }
 
       before { controller.login(user) }
 

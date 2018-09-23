@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'blogposts/edit', type: :view do
-  let(:blogpost) { FactoryGirl.create(:blogpost) }
+  let(:blogpost) { FactoryBot.create(:blogpost) }
 
   before { assign(:blogpost, blogpost) }
 

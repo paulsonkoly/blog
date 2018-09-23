@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.2.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'jquery-rails'
 gem 'cocoon'
@@ -55,7 +57,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.5'
   gem 'rspec-html-matchers'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'simplecov', require: false

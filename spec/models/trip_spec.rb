@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Trip, type: :model do
-  subject { FactoryGirl.build(:trip) }
+  subject { FactoryBot.build(:trip) }
 
   it { is_expected.to be_valid }
 
@@ -15,7 +15,7 @@ RSpec.describe Trip, type: :model do
   end
 
   context 'with less than 2 locations' do
-    subject { FactoryGirl.build :trip, location_count: 1 }
+    subject { FactoryBot.build :trip, location_count: 1 }
 
     it { is_expected.not_to be_valid }
   end
@@ -27,7 +27,7 @@ RSpec.describe Trip, type: :model do
 
     describe '.total_distance' do
       it 'returns the sum of lengths of all trips' do
-        trip1, trip2 = Array.new(2) { FactoryGirl.create :trip }
+        trip1, trip2 = Array.new(2) { FactoryBot.create :trip }
         expect(subject.total_distance).to eq(trip1.length + trip2.length)
       end
 
@@ -45,8 +45,8 @@ RSpec.describe Trip, type: :model do
         # while this does not necessarily guarantee that trip2 is longer
         # in practice it will be. Note that location coordinates are randomly
         # generated on the Earth surface
-        FactoryGirl.create :trip, location_count: 2
-        trip2 = FactoryGirl.create :trip, location_count: 20
+        FactoryBot.create :trip, location_count: 2
+        trip2 = FactoryBot.create :trip, location_count: 20
 
         expect(subject.longest_distance).to eq(trip2)
       end

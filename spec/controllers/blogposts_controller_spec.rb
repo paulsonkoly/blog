@@ -8,23 +8,23 @@ RSpec.describe BlogpostsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Blogpost. As you add validations to Blogpost, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { FactoryGirl.attributes_for(:blogpost) }
+  let(:valid_attributes) { FactoryBot.attributes_for(:blogpost) }
 
   let(:invalid_attributes) do
-    FactoryGirl.attributes_for(:blogpost).merge(title: '')
+    FactoryBot.attributes_for(:blogpost).merge(title: '')
   end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # BlogpostsController. Be sure to keep this updated too.
-  let(:logged_in_user) { FactoryGirl.create :user }
+  let(:logged_in_user) { FactoryBot.create :user }
   let(:valid_session) { { user_id: logged_in_user.id } }
 
   describe 'GET #index' do
     it 'returns a success response' do
       Blogpost.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -32,14 +32,14 @@ RSpec.describe BlogpostsController, type: :controller do
     it 'returns a success response' do
       blogpost = Blogpost.create! valid_attributes
       get :show, params: { id: blogpost.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
   describe 'GET #new' do
     it 'returns a success response' do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     context 'when no user is logged in' do
@@ -53,7 +53,7 @@ RSpec.describe BlogpostsController, type: :controller do
     it 'returns a success response' do
       blogpost = Blogpost.create! valid_attributes
       get :edit, params: { id: blogpost.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     context 'when no user is logged in' do
@@ -97,14 +97,14 @@ RSpec.describe BlogpostsController, type: :controller do
         post(:create,
              params: { blogpost: invalid_attributes },
              session: valid_session)
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) { FactoryGirl.attributes_for(:blogpost) }
+      let(:new_attributes) { FactoryBot.attributes_for(:blogpost) }
       let(:blogpost) { Blogpost.create! valid_attributes }
 
       it 'updates the requested blogpost' do
@@ -139,7 +139,7 @@ RSpec.describe BlogpostsController, type: :controller do
         put(:update,
             params: { id: blogpost.to_param, blogpost: invalid_attributes },
             session: valid_session)
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end

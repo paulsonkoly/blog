@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :location do
     latitude { rand(-90..90) }
     longitude { rand(-180..180) }

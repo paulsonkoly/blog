@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe 'blogposts/index', type: :view do
   before do
     assign(:blogposts,
-           [FactoryGirl.create(:blogpost, title: 'post-1'),
-            FactoryGirl.create(:blogpost, title: 'post-2')])
+           [FactoryBot.create(:blogpost, title: 'post-1'),
+            FactoryBot.create(:blogpost, title: 'post-2')])
   end
 
   it 'renders a list of blogposts' do

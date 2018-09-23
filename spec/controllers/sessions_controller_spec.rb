@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   describe 'GET #new' do
     it 'returns http success' do
       get :new
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -17,7 +17,7 @@ RSpec.describe SessionsController, type: :controller do
       it 'returns http success' do
         post(:create,
              params: { session: { user_name: 'nonexistent', password: '' } })
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 

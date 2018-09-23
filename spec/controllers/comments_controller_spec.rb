@@ -3,18 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  let(:blogpost) { FactoryGirl.create :blogpost }
-  let(:comment) { FactoryGirl.create :comment, blogpost: blogpost }
+  let(:blogpost) { FactoryBot.create :blogpost }
+  let(:comment) { FactoryBot.create :comment, blogpost: blogpost }
 
   let(:valid_attributes) do
-    FactoryGirl.attributes_for(:comment)
+    FactoryBot.attributes_for(:comment)
   end
 
   let(:invalid_attributes) do
-    FactoryGirl.attributes_for(:comment).merge(email: '')
+    FactoryBot.attributes_for(:comment).merge(email: '')
   end
 
-  let(:logged_in_user) { FactoryGirl.create :user }
+  let(:logged_in_user) { FactoryBot.create :user }
   let(:logged_in_session) { { user_id: logged_in_user.id } }
 
   describe 'POST #create' do
@@ -43,7 +43,7 @@ RSpec.describe CommentsController, type: :controller do
       get(:edit,
           params: { id: comment.to_param, blogpost_id: blogpost.to_param },
           session: logged_in_session)
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -78,7 +78,7 @@ RSpec.describe CommentsController, type: :controller do
                       blogpost_id: blogpost.to_param,
                       comment: invalid_attributes },
             session: logged_in_session
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end
