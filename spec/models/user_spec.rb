@@ -1,29 +1,41 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
   subject { FactoryGirl.build(:user) }
 
   it { is_expected.to be_valid }
-  
-  it 'is invalid with blank name' do
-    subject.name = ""
-    expect(subject).not_to be_valid
+
+  context 'with blank name' do
+    subject { FactoryGirl.build(:user, name: '') }
+
+    it { is_expected.not_to be_valid }
   end
 
-  it 'has unique name' do
-    subject.save
-    subject2 = subject.dup
-    expect(subject2).not_to be_valid
+  context 'with clashing names' do
+    before { subject.dup.save }
+
+    it { is_expected.not_to be_valid }
   end
 
-  it 'has a password minimum length of 6' do
-    subject.password = '12345'
-    subject.password_confirmation = subject.password
-    expect(subject).not_to be_valid    
+  context 'with too short password' do
+    subject do
+      FactoryGirl.build(:user,
+                        password: '12345',
+                        password_confirmation: '12345')
+    end
+
+    it { is_expected.not_to be_valid }
   end
 
-  it 'has a matching password_confirmation' do
-    subject.password_confirmation = subject.password + 'x'
-    expect(subject).not_to be_valid
+  context 'with mismatching password confirmation' do
+    subject do
+      FactoryGirl.build(:user,
+                        password: '1234567',
+                        password_confirmation: '1234567x')
+    end
+
+    it { is_expected.not_to be_valid }
   end
 end
